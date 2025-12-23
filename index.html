@@ -8,24 +8,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Áp dụng cho tất cả ảnh hoặc thay bằng class cụ thể của bạn */
-img {
-    /* 1. Làm nét ảnh */
-    image-rendering: -webkit-optimize-contrast; /* Dành cho Chrome/Safari */
-    image-rendering: crisp-edges;               /* Dành cho Firefox */
-    
-    /* 2. Phóng to ảnh */
-    /* Bạn có thể chỉnh sửa con số 1.5 (gấp rưỡi) hoặc 2 (gấp đôi) tùy ý */
-    transform: scale(1.2); 
-    
-    /* Đảm bảo ảnh không bị mờ khi phóng to bằng transform */
-    backface-visibility: hidden;
-    
-    /* Giúp ảnh mượt mà hơn khi chuyển đổi */
-    transition: transform 0.3s ease;
-}
+        img {
+    /* Ép trình duyệt không được làm mượt (gây mờ) khi phóng to */
+    image-rendering: -webkit-optimize-contrast; /* Chrome, Safari, Edge */
+    image-rendering: crisp-edges;               /* Firefox */
+    image-rendering: pixelated;                 /* Dành cho ảnh nhỏ muốn phóng to mà không nhòe */
 
-/* Nếu bạn muốn phóng to ảnh khi di chuột vào */
+    /* Khử nhiễu và tăng độ tương phản chi tiết */
+    filter: contrast(1.1) brightness(1.05) sharp(1px); 
+    
+    /* Phóng to ảnh (ví dụ phóng lên 1.5 lần) */
+    transform: scale(1.5);
+    transform-origin: center; /* Phóng to từ tâm */
+    
+    /* Đảm bảo pixel không bị lệch khi dùng transform */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
 img:hover {
     transform: scale(1.5);
 }
